@@ -5,6 +5,8 @@ import com.xyf.bootlaunch.model.Article;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 /**
  * 对文章进行增删改查的RESTFul风格的接口
  * 文章作为被操作的资源对象
@@ -23,6 +25,7 @@ public class ArticleController {
      */
     @PostMapping("article")
     public AjaxResponse saveArticle(@RequestBody Article article) {
+        article.setCreateTime(new Date());
         log.info("成功保存书籍:{}", article);
         return AjaxResponse.success();
     }

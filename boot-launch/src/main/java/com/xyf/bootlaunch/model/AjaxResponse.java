@@ -15,8 +15,6 @@ public class AjaxResponse {
 
     private AjaxResponse(){}
 
-
-
     public static AjaxResponse success() {
         AjaxResponse resultBean = new AjaxResponse();
         resultBean.setIsok(true);
