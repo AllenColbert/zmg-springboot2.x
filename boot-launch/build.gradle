@@ -22,6 +22,8 @@ dependencies {
     //引入lombok的jar包和相关的注解
     implementation 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    implementation 'mysql:mysql-connector-java:5.1.46'
 
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
