@@ -30,4 +30,10 @@ dependencies {
         exclude group:"org.slf4j",module:"slf4j-log4j12"
     }
     implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.10'
+
+    //引入webjars管理静态资源<js/css等>
+    implementation 'org.webjars:jquery:1.12.4'
+    //自动管理静态js的版本
+    implementation 'org.webjars:webjars-locator:0.30'
+
 }
