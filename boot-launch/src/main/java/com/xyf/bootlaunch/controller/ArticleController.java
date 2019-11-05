@@ -1,11 +1,12 @@
 package com.xyf.bootlaunch.controller;
 
 import com.xyf.bootlaunch.model.AjaxResponse;
-import com.xyf.bootlaunch.model.Article;
+import com.xyf.bootlaunch.model.ArticleVO;
+import com.xyf.bootlaunch.service.ArticleRestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import javax.annotation.Resource;
 
 /**
  * 对文章进行增删改查的RESTFul风格的接口
@@ -20,22 +21,22 @@ import java.util.Date;
 public class ArticleController {
     //写增删改查4种RESTFul接口,能调用就行不用写具体方法内容，注意理解RESTFul风格接口的实际含义
 
+    @Resource
+    private ArticleRestService articleRestService;
     /**
      * 增加文章
      */
     @PostMapping("article")
-    public AjaxResponse saveArticle(@RequestBody Article article) {
-        article.setCreateTime(new Date());
-        log.info("成功保存书籍:{}", article);
-        return AjaxResponse.success();
+    public AjaxResponse saveArticle(@RequestBody ArticleVO articleVO) {
+        return AjaxResponse.success(articleRestService.saveArticle(articleVO));
     }
 
     /**
      *删除文章
      */
     @DeleteMapping("article/{id}")
-    public AjaxResponse deleteArticle(@PathVariable Long id) {
-        log.info("要删除的文章id：{}", id);
+    public AjaxResponse deleteArticle(@PathVariable Integer id) {
+        articleRestService.deleteArticle(id);
         return AjaxResponse.success();
     }
 
@@ -43,9 +44,9 @@ public class ArticleController {
      * 更新文章
      */
     @PutMapping("article/{id}")
-    public AjaxResponse updateArticle(@PathVariable Long id, @RequestBody Article article) {
-        article.setId(id);
-        log.info("要修改的文章：{}", article);
+    public AjaxResponse updateArticle(@PathVariable Integer id, @RequestBody ArticleVO articleVO) {
+        articleVO.setId(id);
+        articleRestService.updateArticle(articleVO);
         return AjaxResponse.success();
     }
 
@@ -53,9 +54,16 @@ public class ArticleController {
      * 查询文章
      */
     @GetMapping("article/{id}")
-    public AjaxResponse getArticle(@PathVariable Long id) {
-        log.info("查询文章id：{}", id);
-        return AjaxResponse.success();
+    public AjaxResponse getArticle(@PathVariable Integer id) {
+        return AjaxResponse.success(articleRestService.getArticle(id));
+    }
+
+    /**
+     * 获取全部文章
+     */
+    @GetMapping("articles")
+    public AjaxResponse getAllArticle(){
+        return AjaxResponse.success(articleRestService.getAll());
     }
 
 }
