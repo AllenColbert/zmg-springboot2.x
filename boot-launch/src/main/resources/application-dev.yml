@@ -10,6 +10,11 @@ spring:
     username: root
     password: 1234
     driver-class-name: com.mysql.jdbc.Driver
+  freemarker:
+    cache: false # 缓存配置 开发阶段应该配置为false 因为经常会改
+    suffix: .html # 模版后缀名 默认为ftl
+    charset: UTF-8 # 文件编码
+    template-loader-path: classpath:/templates/
 #自定义xml文件的位置
 mybatis:
   mapper-locations: classpath:mapper/*.xml

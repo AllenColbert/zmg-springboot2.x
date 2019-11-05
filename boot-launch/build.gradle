@@ -36,4 +36,6 @@ dependencies {
     //自动管理静态js的版本
     implementation 'org.webjars:webjars-locator:0.30'
 
+    implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+
 }
